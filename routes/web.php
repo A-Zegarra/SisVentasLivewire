@@ -13,6 +13,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\ShowCategorias;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', function () {return view('welcome');});
+Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('categorias', CategoriaController::class);
 Route::resource('clientes', ClienteController::class);
@@ -38,4 +40,3 @@ Route::resource('productos', ProductoController::class);
 Route::resource('proveedores', ProveedorController::class);
 Route::resource('roles', RolController::class);
 Route::resource('ventas', VentaController::class);
-

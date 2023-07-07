@@ -26,7 +26,7 @@ class CategoriaController extends Controller
     {
         $categoria = new Categoria();
         $categoria = Categoria::create($request->all());
-        return redirect()->route('categorias.show', $categoria);
+        return redirect()->route('categorias.index', $categoria);
     }
 
 
