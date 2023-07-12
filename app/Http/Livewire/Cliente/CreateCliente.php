@@ -18,20 +18,27 @@ class CreateCliente extends Component
     }
 
     protected $rules  = [
-        'nombre' => 'required|max:30',
-        'nro_documento' => 'required|max:20',
+        'nombre' => 'nullable',
+        'nro_documento' => 'required|max:11',
+        'foto' => 'nullable',
     ];
 
-    /*  VALIDACION EN TIEMPO REAL
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-    } */
+    }
 
     public function save()
     {
         $this->validate();
-        $foto = $this->foto->store('clientes');
+
+
+        if ($this->foto) {
+            $foto = $this->foto->store('cliente');
+        } else {
+            $foto = 'predefinidas/sinImagen.jpg';
+        }
+
 
         Cliente::create([
             'nombre' => $this->nombre,
@@ -44,7 +51,6 @@ class CreateCliente extends Component
             'ciudad' => $this->ciudad,
             'nacimiento' => $this->nacimiento,
             'foto' => $foto,
-
         ]);
 
         $this->reset(['open', 'nombre', 'razon_social', 'tipo_documento', 'nro_documento', 'correo', 'telefono', 'pais', 'ciudad', 'nacimiento', 'foto']);

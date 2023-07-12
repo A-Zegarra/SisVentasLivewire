@@ -8,31 +8,35 @@
 
     {{-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"> --}}
     {{-- CONTENEDOR DE BUSCADOR --}}
-    <div class="py-6 py-4 flex items-center">
+    <div class="px-6 py-4 flex items-center">
         <x-input class="flex-1 mr-4" placeholder="Escriba lo que quiere buscar" type="search" wire:model="search" />
         @livewire('cliente.create-cliente')
     </div>
     {{-- TABLA PRINCIPAL --}}
-    <div class="overflow-x-scroll">
+    <div class="overflow-x-auto">
         @if ($clientes->count())
-            <table class="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('id')">
-                            <span>id</span>
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            wire:click="order('id')">
+                            id
                             @if ($sort == 'id')
                                 @if ($direction == 'asc')
-                                    <i class="fa-solid fa-arrow-up-z-a float-right mt-1"></i>
+                                    <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                 @else
-                                    <i class="fa-solid fa-arrow-down-z-a float-right mt-1"></i>
+                                    <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
                                 @endif
                             @else
                                 <i class="fas fa-sort float-right mt-1"></i>
                             @endif
                         </th>
 
-                        <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('nombre')">
-                            <span>nombre</span>
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            wire:click="order('nombre')">
+                            nombre
                             @if ($sort == 'nombre')
                                 @if ($direction == 'asc')
                                     <i class="fa-solid fa-arrow-up-z-a float-right mt-1"></i>
@@ -44,8 +48,10 @@
                             @endif
                         </th>
 
-                        <th scope="col" class="px-6 py-3 cursor-pointer" wire:click="order('razon_social')">
-                            <span>razon social</span>
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            wire:click="order('razon_social')">
+                            r. social
                             @if ($sort == 'razon_social')
                                 @if ($direction == 'asc')
                                     <i class="fa-solid fa-arrow-up-z-a float-right mt-1"></i>
@@ -57,49 +63,58 @@
                             @endif
                         </th>
 
-                        <th scope="col" class="px-6 py-3">
-                            <span>tipo documento</span>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            <span>nro documento</span>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            <span>correo</span>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            <span>telefono</span>
-                        </th>
-
-                        {{-- <th scope="col" class="px-6 py-3">
-                            <span>pais</span>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            <span>ciudad</span>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            <span>nacimiento</span>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3">
-                            <span>foto</span>
+                        {{-- <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            tipo documento
                         </th> --}}
 
-                        <th colspan="3" scope="col" class="px-6 py-3">opciones</th>
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            nro documento
+                        </th>
+
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            correo
+                        </th>
+
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            telefono
+                        </th>
+
+                       {{--  <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            pais
+                        </th>
+
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            ciudad
+                        </th>
+
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            nacimiento
+                        </th>
+
+                        <th scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            foto
+                        </th>
+ --}}
+                        <th colspan="3" scope="col"
+                            class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            opciones</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="bg-white divide-y divide-gray-200">
                     @foreach ($clientes as $cliente)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-                                {{ $cliente->id }}</th>
+                        <tr>
+                            <td class="px-6 py-4">{{ $cliente->id }}</td>
                             <td class="px-6 py-4">{{ $cliente->nombre }}</td>
                             <td class="px-6 py-4">{{ $cliente->razon_social }}</td>
-                            <td class="px-6 py-4">{{ $cliente->tipo_documento }}</td>
+                            {{-- <td class="px-6 py-4">{{ $cliente->tipo_documento }}</td> --}}
                             <td class="px-6 py-4">{{ $cliente->nro_documento }}</td>
                             <td class="px-6 py-4">{{ $cliente->correo }}</td>
                             <td class="px-6 py-4">{{ $cliente->telefono }}</td>
@@ -110,7 +125,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a href="#" class="text-indigo-600 hover:text-indigo-900">Ver</a>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                 @livewire('cliente.edit-cliente', ['cliente' => $cliente], key($cliente->id))
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

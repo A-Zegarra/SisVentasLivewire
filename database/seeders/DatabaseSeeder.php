@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         Storage::deleteDirectory('livewire-tmp');
-        Storage::deleteDirectory('clientes');
-        Storage::makeDirectory('clientes');
+        Storage::deleteDirectory('cliente');
+        Storage::makeDirectory('cliente');
         Categoria::factory(10)->create();
         Cliente::factory(10)->create();
         Proveedor::factory(10)->create();

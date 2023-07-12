@@ -13,19 +13,11 @@
             <div class="mb-4">
                 <x-label value="Nombre"></x-label>
                 <x-input type="text" class="w-full" wire:model="nombre" />
-                @error('nombre')
-                    <span>
-                        <x-input-error for='nombre' />
-                    </span>
-                @enderror
             </div>
 
             <div class="mb-4">
                 <x-label value="Razon social"></x-label>
                 <x-input type="text" class="w-full" wire:model.defer="razon_social" />
-                @error('razon_social')
-                    <x-input-error for='razon_social' />
-                @enderror
             </div>
 
             <div class="mb-4 flex">
@@ -36,17 +28,12 @@
                         <option value="dni">DNI</option>
                         <option value="ruc">RUC</option>
                     </x-select>
-                    @error('tipo_documento')
-                        <x-input-error for='tipo_documento' />
-                    @enderror
                 </div>
 
                 <div class="w-9/12">
                     <x-label value="Nro Documento"></x-label>
-                    <x-input type="text" wire:model.defer="nro_documento" class="w-full" />
-                    @error('nro_documento')
-                        <x-input-error for='nro_documento' />
-                    @enderror
+                    <x-input type="text" wire:model="nro_documento" class="w-full" />
+                    <x-input-error for='cliente.nro_documento' />
                 </div>
             </div>
 
@@ -54,17 +41,11 @@
                 <div class="w-9/12">
                     <x-label value="Correo"></x-label>
                     <x-input type="email" class="w-full" wire:model.defer="correo" />
-                    @error('correo')
-                        <x-input-error for='correo' />
-                    @enderror
                 </div>
 
                 <div class="mb-4 ml-4">
                     <x-label value="Celular"></x-label>
                     <x-input type="tel" class="w-full" wire:model.defer="telefono" />
-                    @error('telefono')
-                        <x-input-error for='telefono' />
-                    @enderror
                 </div>
             </div>
 
@@ -72,25 +53,16 @@
                 <div class="w-4/12 mr-2">
                     <x-label value="Pais"></x-label>
                     <x-input type="text" class="w-full" wire:model.defer="pais" />
-                    @error('pais')
-                        <x-input-error for='pais' />
-                    @enderror
                 </div>
 
                 <div class="w-4/12">
                     <x-label value="Ciudad"></x-label>
                     <x-input type="text" class="w-full" wire:model.defer="ciudad" />
-                    @error('ciudad')
-                        <x-input-error for='ciudad' />
-                    @enderror
                 </div>
 
                 <div class="w-4/12 ml-2">
                     <x-label value="Nacimiento"></x-label>
                     <x-input type="date" class="w-full" wire:model.defer="nacimiento" />
-                    @error('nacimiento')
-                        <x-input-error for='nacimiento' />
-                    @enderror
                 </div>
             </div>
 
@@ -101,15 +73,12 @@
             </div>
 
             @if ($foto)
-                <img class="mb-4 w-1/4 h-1/4" src="{{ $foto->temporaryUrl() }}">
+            <img class="mb-4 w-1/4 h-1/4" src="{{ $foto->temporaryUrl() }}">
             @endif
 
             <div class="mb-4">
                 <x-label value="Foto"></x-label>
                 <x-input type="file" class="w-full" wire:model="foto" id="{{ $identificador }}" />
-                @error('foto')
-                    <x-input-error for='foto' />
-                @enderror
             </div>
 
         </x-slot>
