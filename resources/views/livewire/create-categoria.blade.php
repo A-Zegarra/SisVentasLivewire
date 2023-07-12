@@ -5,7 +5,7 @@
 
     <x-dialog-modal wire:model="open">
 
-        <x-slot name="title">
+        <x-slot name="title"> 
             Crear nuevo post
         </x-slot>
 
@@ -34,7 +34,8 @@
             <x-secondary-button wire:click="$set('open',false)" class="mr-4">
                 Cancelar
             </x-secondary-button>
-            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save" class="disabled:opacity-25">
+            <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save"
+                class="disabled:opacity-25">
                 Crear Categoria
             </x-danger-button>
 

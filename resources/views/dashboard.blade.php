@@ -10,7 +10,8 @@
            <!-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <x-welcome />
             </div>-->
-            @livewire('show-categorias',['title'=> 'Este es titulo'])
+            @livewire('cliente.show-clientes',['title'=> 'Este es titulo'])
+            {{-- @livewire('show-categorias',['title'=> 'Este es titulo']) --}}
         </div>
     </div>
 </x-app-layout>

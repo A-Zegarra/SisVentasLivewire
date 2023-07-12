@@ -15,6 +15,7 @@ use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Venta;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Storage::deleteDirectory('livewire-tmp');
+        Storage::deleteDirectory('clientes');
+        Storage::makeDirectory('clientes');
         Categoria::factory(10)->create();
         Cliente::factory(10)->create();
         Proveedor::factory(10)->create();

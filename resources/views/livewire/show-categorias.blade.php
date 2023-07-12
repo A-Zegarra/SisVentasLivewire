@@ -74,5 +74,5 @@
                 No coincide con ningún registro.
             </div>
         @endif
-    </div>
+    </div>  
 </div>

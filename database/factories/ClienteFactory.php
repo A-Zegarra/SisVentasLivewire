@@ -26,7 +26,7 @@ class ClienteFactory extends Factory
             'pais' => $this->faker->country,
             'ciudad' => $this->faker->city,
             'nacimiento' => $this->faker->date,
-            'foto' => $this->faker->imageUrl(),
+            'foto' => 'clientes/' . $this->faker->image('public/storage/clientes', 640, 480, null, false),
         ];
     }
 }
