@@ -36,7 +36,7 @@ class CreateCliente extends Component
         if ($this->foto) {
             $foto = $this->foto->store('cliente');
         } else {
-            $foto = 'predefinidas/sinImagen.jpg';
+            $foto = 'predefinidas/sinImagen.png';
         }
 
 

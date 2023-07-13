@@ -1,4 +1,4 @@
-<div wire:init='loadClientes'>
+<div wire:init='loadCategorias'>
     {{-- DASHBOARD --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -22,11 +22,11 @@
 
             <x-input class="flex-1 mx-4" placeholder="Escriba lo que quiere buscar" type="search"
                 wire:model="search" />
-            @livewire('cliente.create-cliente')
+            @livewire('categoria.create-categoria')
         </div>
         {{-- TABLA PRINCIPAL --}}
         <div class="overflow-x-auto">
-            @if (count($clientes))
+            @if (count($categorias))
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
@@ -44,7 +44,6 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-
                             <th scope="col"
                                 class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                 wire:click="order('nombre')">
@@ -59,12 +58,11 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-
                             <th scope="col"
                                 class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                wire:click="order('razon_social')">
-                                r. social
-                                @if ($sort == 'razon_social')
+                                wire:click="order('descripcion')">
+                                descripcion
+                                @if ($sort == 'descripcion')
                                     @if ($direction == 'asc')
                                         <i class="fa-solid fa-arrow-up-z-a float-right mt-1"></i>
                                     @else
@@ -74,96 +72,44 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-
                             <th scope="col"
                                 class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                tipo documento
+                                opciones
                             </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                nro documento
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                correo
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                telefono
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                pais
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                ciudad
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                nacimiento
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                foto
-                            </th>
-
-                            <th scope="col"
-                                class="w-24 cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                opciones</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($clientes as $cliente)
+                        @foreach ($categorias as $categoria)
                             <tr>
-                                <td class="px-6 py-4">{{ $cliente->id }}</td>
-                                <td class="px-6 py-4">{{ $cliente->nombre }}</td>
-                                <td class="px-6 py-4">{{ $cliente->razon_social }}</td>
-                                <td class="px-6 py-4">{{ $cliente->tipo_documento }}</td>
-                                <td class="px-6 py-4">{{ $cliente->nro_documento }}</td>
-                                <td class="px-6 py-4">{{ $cliente->correo }}</td>
-                                <td class="px-6 py-4">{{ $cliente->telefono }}</td>
-                                <td class="px-6 py-4">{{ $cliente->pais }}</td>
-                                <td class="px-6 py-4">{{ $cliente->ciudad }}</td>
-                                <td class="px-6 py-4">{{ $cliente->nacimiento }}</td>
-                                <td class="px-1 py-4"><img src="{{ Storage::url($cliente->foto) }}"></td>
-
-                                <td class="px-6 py-4 ext-sm font-medium flex">
-                                    @livewire('cliente.edit-cliente', ['cliente' => $cliente], key($cliente->id))
+                                <td class="px-6 py-4">{{ $categoria->id }}</td>
+                                <td class="px-6 py-4">{{ $categoria->nombre }}</td>
+                                <td class="px-6 py-4">{{ $categoria->descripcion }}</td>
+                                <td class="px-6 py-4 ext-sm font-medium flex float-right">
+                                    @livewire('categoria.edit-categoria', ['categoria' => $categoria], key($categoria->id))
                                     <button
                                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded ml-2"
-                                        wire:click="$emit('deleteCliente',{{ $cliente->id }})">
+                                        wire:click="$emit('deleteCategoria',{{ $categoria->id }})">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </td>
-
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
         </div>
-
-        @if ($clientes->hasPages())
+        @if ($categorias->hasPages())
             <div class="px-6 py-3">
-                {{ $clientes->links() }}
+                {{ $categorias->links() }}
             </div>
         @endif
     @else
         <div class="px-6 py-4">
-            No coincide con ningún registro.
+            No existe ningun registro coincidente
         </div>
         @endif
-
         @push('js')
             <script>
-                Livewire.on('deleteCliente', clienteId => {
+                Livewire.on('deleteCategoria', categoriaId => {
                     Swal.fire({
                         title: '¿Estás seguro?',
                         text: "¡No podrás revertir esto!",
@@ -174,7 +120,7 @@
                         confirmButtonText: 'Sí, eliminarlo!'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            Livewire.emitTo('cliente.show-clientes', 'delete', clienteId);
+                            Livewire.emitTo('categoria.show-categorias', 'delete', categoriaId);
                             Swal.fire(
                                 '¡Eliminado!',
                                 'Tu registro ha sido eliminado.',

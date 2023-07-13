@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Cliente;
+namespace App\Http\Livewire\Categoria;
 
 use Livewire\WithPagination;
-use App\Models\Cliente;
+use App\Models\Categoria;
 use Livewire\Component;
 
-class ShowClientes extends Component
+class ShowCategorias extends Component
 {
     use WithPagination;
     public $search = '';
@@ -32,18 +32,18 @@ class ShowClientes extends Component
     public function render()
     {
         if ($this->readyToLoad) {
-            $clientes = Cliente::where('nombre', 'like', '%' . $this->search . '%')
-                ->orWhere('nro_documento', 'like', '%' . $this->search . '%')
+            $categorias = Categoria::where('nombre', 'like', '%' . $this->search . '%')
+                ->orWhere('descripcion', 'like', '%' . $this->search . '%')
                 ->orderBy($this->sort, $this->direction)
                 ->paginate($this->cant);
         } else {
-            $clientes = [];
+            $categorias = [];
         }
 
-        return view('livewire.cliente.show-clientes', compact('clientes'));
+        return view('livewire.categoria.show-categorias', compact('categorias'));
     }
 
-    public function loadClientes()
+    public function loadCategorias()
     {
         $this->readyToLoad = true;
     }
@@ -63,8 +63,8 @@ class ShowClientes extends Component
             $this->direction = 'asc';
         }
     }
-    public function delete(Cliente $cliente)
+    public function delete(Categoria $categoria)
     {
-        $cliente->delete();
+        $categoria->delete();
     }
 }

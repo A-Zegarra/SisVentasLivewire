@@ -89,7 +89,7 @@
             </x-secondary-button>
             <x-danger-button wire:click="save" wire:loading.attr="disabled" wire:target="save,foto"
                 class="disabled:opacity-25">
-                Crear Categoria
+                Crear cliente
             </x-danger-button>
 
         </x-slot>

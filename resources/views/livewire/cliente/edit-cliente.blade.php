@@ -1,5 +1,5 @@
 <div>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded"
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-3 rounded ml-2"
         wire:click="$set('open',true)">
         <i class="fa fa-edit"></i>
     </button>

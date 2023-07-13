@@ -11,7 +11,8 @@
                 <x-welcome />
             </div>-->
             @livewire('cliente.show-clientes',['title'=> 'Este es titulo'])
-            {{-- @livewire('show-categorias',['title'=> 'Este es titulo']) --}}
+            {{-- @livewire('categoria.show-categorias',['title'=> 'Este es titulo']) --}}
+
         </div>
     </div>
 </x-app-layout>
