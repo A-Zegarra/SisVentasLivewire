@@ -24,8 +24,8 @@
                     <x-label value="Tipo"></x-label>
                     <x-select class="mr-4" wire:model="cliente.tipo_documento">
                         <option value="">Seleccionar...</option>
-                        <option value="dni">DNI</option>
-                        <option value="ruc">RUC</option>
+                        <option value="DNI">DNI</option>
+                        <option value="RUC">RUC</option>
                     </x-select>
                 </div>
 

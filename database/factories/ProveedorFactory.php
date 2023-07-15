@@ -26,7 +26,7 @@ class ProveedorFactory extends Factory
             'pais' => $this->faker->country,
             'ciudad' => $this->faker->city,
             'nacimiento' => $this->faker->date,
-            'foto' => $this->faker->imageUrl(),
+            'foto' => 'proveedor/' . $this->faker->image('public/storage/proveedor', 640, 480, null, false),
         ];
     }
 }

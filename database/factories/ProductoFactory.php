@@ -19,13 +19,14 @@ class ProductoFactory extends Factory
     {
         return [
             'codigo' => $this->faker->unique()->randomNumber(6),
+            'nombre' => $this->faker->name,
             'descripcion' => $this->faker->sentence,
             'cantidad_caja' => $this->faker->numberBetween(1, 10),
             'costo' => $this->faker->randomFloat(2, 1, 1000),
             'precio_menor' => $this->faker->randomFloat(2, 10, 100),
             'precio_mayor' => $this->faker->randomFloat(2, 100, 1000),
             'tipo_medida' => $this->faker->randomElement(['Kg', 'Unidad', 'Litro']),
-            'foto' => $this->faker->imageUrl(),
+            'foto' => 'producto/' . $this->faker->image('public/storage/producto', 640, 480, null, false),
             'categoria_id' => Categoria::inRandomOrder()->first()->id,
         ];
     }

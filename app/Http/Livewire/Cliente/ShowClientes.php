@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Cliente;
 
-use Livewire\WithPagination;
 use App\Models\Cliente;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowClientes extends Component
 {
