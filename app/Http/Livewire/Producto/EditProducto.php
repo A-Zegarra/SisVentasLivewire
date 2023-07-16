@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Producto;
 
+use App\Models\Categoria;
 use App\Models\Producto;
+
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,7 +14,7 @@ class EditProducto extends Component
     use WithFileUploads;
 
     public $open = false;
-    public $producto, $foto, $identificador;
+    public $producto, $foto, $identificador, $categoria_id;
 
     protected $rules = [
         'producto.codigo' => 'required',
@@ -24,6 +26,7 @@ class EditProducto extends Component
         'producto.precio_mayor' => 'nullable',
         'producto.tipo_medida' => 'nullable',
         'producto.foto' => 'nullable',
+        'categoria_id' => 'nullable'
     ];
 
     public function updated($propertyName)
@@ -34,6 +37,7 @@ class EditProducto extends Component
     public function mount(Producto $producto)
     {
         $this->producto = $producto;
+        $this->categoria_id = $producto->categoria_id;
         $this->identificador = rand();
     }
     public function save()
@@ -56,6 +60,7 @@ class EditProducto extends Component
 
     public function render()
     {
-        return view('livewire.producto.edit-producto');
+        $categorias = Categoria::all();
+        return view('livewire.producto.edit-producto', compact('categorias'));
     }
 }

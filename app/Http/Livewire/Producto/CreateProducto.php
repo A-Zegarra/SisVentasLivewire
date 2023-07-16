@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Producto;
 
+use App\Models\Categoria;
 use App\Models\Producto;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -10,7 +11,7 @@ class CreateProducto extends Component
 {
     use WithFileUploads;
     public $open = false;
-    public $identificador, $codigo, $nombre, $descripcion, $cantidad_caja, $costo, $precio_menor, $precio_mayor, $tipo_medida, $foto;
+    public $identificador, $codigo, $nombre, $descripcion, $cantidad_caja, $costo, $precio_menor, $precio_mayor, $tipo_medida, $foto, $categoria_id;
 
     public function mount()
     {
@@ -21,6 +22,7 @@ class CreateProducto extends Component
         'codigo' => 'required',
         'nombre' => 'required',
         'foto' => 'nullable',
+        'categoria_id' => 'required'
     ];
 
     public function updated($propertyName)
@@ -32,13 +34,11 @@ class CreateProducto extends Component
     {
         $this->validate();
 
-
         if ($this->foto) {
             $foto = $this->foto->store('producto');
         } else {
             $foto = 'predefinidas/sinImagen.png';
         }
-
 
         Producto::create([
             'codigo' => $this->codigo,
@@ -50,9 +50,10 @@ class CreateProducto extends Component
             'precio_mayor' => $this->precio_mayor,
             'tipo_medida' => $this->tipo_medida,
             'foto' => $foto,
+            'categoria_id' => $this->categoria_id
         ]);
 
-        $this->reset(['open', 'codigo', 'nombre', 'descripcion', 'cantidad_caja', 'costo', 'precio_menor', 'precio_mayor', 'tipo_medida', 'foto']);
+        $this->reset(['open', 'codigo', 'nombre', 'descripcion', 'cantidad_caja', 'costo', 'precio_menor', 'precio_mayor', 'tipo_medida', 'foto', 'categoria_id']);
         $this->identificador = rand();
         $this->emitTo('producto.show-producto', 'render');
         $this->emit('alert', 'El producto se registró correctamente');
@@ -60,6 +61,8 @@ class CreateProducto extends Component
 
     public function render()
     {
-        return view('livewire.producto.create-producto');
+        $categorias = Categoria::all();
+
+        return view('livewire.producto.create-producto', compact('categorias'));
     }
 }

@@ -5,6 +5,7 @@
     </button>
 
     <x-dialog-modal wire:model="open">
+
         <x-slot name="title">
             Editar Cliente
         </x-slot>
@@ -76,9 +77,9 @@
             </div>
 
             @if ($foto)
-            <img class="mb-4 w-1/4 h-1/4" src="{{ $foto->temporaryUrl() }}">
+                <img class="mb-4 w-1/4 h-1/4" src="{{ $foto->temporaryUrl() }}">
             @else
-            <img class="mb-4 w-1/4 h-1/4" src="{{ Storage::url($cliente->foto) }}">
+                <img class="mb-4 w-1/4 h-1/4" src="{{ Storage::url($cliente->foto) }}">
             @endif
         </x-slot>
         <x-slot name="footer">
